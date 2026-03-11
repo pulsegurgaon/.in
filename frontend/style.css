@@ -1,49 +1,103 @@
 body{
-font-family:Arial;
-background:#0b0f1a;
-color:white;
 margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
 }
 
-header{
+.topbar{
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:10px 20px;
+padding:12px 20px;
 background:#111827;
+flex-wrap:wrap;
 }
 
-nav a{
-margin-right:15px;
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:bold;
+font-size:20px;
+}
+
+.logo img{
+height:30px;
+}
+
+.menu a{
 color:white;
 text-decoration:none;
+margin-right:15px;
 }
 
-.container{
+#search{
+padding:8px;
+border-radius:5px;
+border:none;
+}
+
+button{
+padding:8px 12px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+main{
 padding:20px;
+}
+
+.sectiontitle{
+margin-bottom:15px;
 }
 
 .row{
 display:flex;
-overflow-x:auto;
 gap:20px;
+overflow-x:auto;
 }
 
 .card{
 min-width:260px;
 background:#1f2937;
-border-radius:8px;
+border-radius:10px;
 padding:10px;
+transition:0.2s;
+}
+
+.card:hover{
+transform:scale(1.04);
 }
 
 .card img{
 width:100%;
-border-radius:6px;
+border-radius:8px;
+}
+
+.card h3{
+margin:10px 0 5px;
+}
+
+.card p{
+font-size:14px;
+opacity:0.8;
 }
 
 .ticker{
-background:#111;
+background:#ef4444;
 padding:8px;
-overflow:hidden;
 white-space:nowrap;
+overflow:hidden;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#111827;
+margin-top:40px;
 }
