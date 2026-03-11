@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin</title>
+</head>
+
+<body>
+
+<h2>PulseGurgaon Admin</h2>
+
+<input id="password" placeholder="password">
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none">
+
+<h3>Add Article</h3>
+
+<input id="title">
+<input id="category">
+<textarea id="summary"></textarea>
+
+<button onclick="addArticle()">Add</button>
+
+</div>
+
+<script>
+
+async function login(){
+
+let pass=document.getElementById("password").value
+
+let res=await fetch("/admin/login",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({password:pass})
+})
+
+let data=await res.json()
+
+if(data.success){
+document.getElementById("panel").style.display="block"
+}
+
+}
+
+</script>
+
+</body>
+</html>
