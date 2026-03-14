@@ -75,3 +75,36 @@ text-align:center;
 padding:20px;
 color:#aaa;
 }
+
+
+.breakingbar{
+background:#d40000;
+color:white;
+display:flex;
+align-items:center;
+font-weight:bold;
+padding:6px 10px;
+overflow:hidden;
+}
+
+.breakingbar span{
+background:#a80000;
+padding:5px 10px;
+margin-right:10px;
+border-radius:4px;
+}
+
+.ticker{
+white-space:nowrap;
+display:inline-block;
+animation:scrollnews 15s linear infinite;
+}
+
+@keyframes scrollnews{
+0%{
+transform:translateX(100%);
+}
+100%{
+transform:translateX(-100%);
+}
+}
