@@ -1,27 +1,25 @@
-let lang="en"
+let lang = "en"
 
 function toggleLang(){
-lang = lang==="en" ? "hi" : "en"
+lang = lang === "en" ? "hi" : "en"
 loadNews()
 }
 
 async function loadNews(){
 
-const res = await fetch("https://pulsegurgaon.onrender.com/articles")
+const row = document.getElementById("newsrow")
+row.innerHTML = ""
 
+const res = await fetch("articles.json")
 const data = await res.json()
 
-const row = document.getElementById("newsrow")
+data.forEach(article => {
 
-row.innerHTML=""
-
-data.forEach(article=>{
+const title = lang === "en" ? article.title_en : article.title_hi
+const summary = lang === "en" ? article.summary_en : article.summary_hi
 
 const card = document.createElement("div")
-card.className="card"
-
-const title = lang==="en" ? article.title_en : article.title_hi
-const summary = lang==="en" ? article.summary_en : article.summary_hi
+card.className = "card"
 
 card.innerHTML = `
 <a href="frontend/article.html?id=${article.id}">
@@ -30,6 +28,7 @@ card.innerHTML = `
 <p>${summary}</p>
 </a>
 `
+
 row.appendChild(card)
 
 })
