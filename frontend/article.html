@@ -1,19 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>PulseGurgaon</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#0c1930;
+color:white;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+img{
+width:100%;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+button{
+padding:8px 14px;
+margin:10px 5px;
+cursor:pointer;
+}
+
+.summary{
+background:#13284d;
+padding:15px;
+border-radius:6px;
+margin-bottom:15px;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div id="article"></div>
+<div class="container">
 
-<div class="ad">
-ADVERTISEMENT
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('hi')">Hindi</button>
+
+<h1 id="title"></h1>
+
+<img id="image">
+
+<div id="summary" class="summary"></div>
+
+<p id="content"></p>
+
 </div>
 
-<script src="script.js"></script>
+<script>
+
+let lang="en"
+
+function setLang(l){
+lang=l
+load()
+}
+
+async function load(){
+
+const id=new URLSearchParams(location.search).get("id")
+
+const res=await fetch("https://pulsegurgaon-backend.onrender.com/articles")
+
+const data=await res.json()
+
+const article=data.find(a=>a.id==id)
+
+document.getElementById("title").innerText=article["title_"+lang]
+document.getElementById("summary").innerText=article["summary_"+lang]
+document.getElementById("content").innerText=article["content_"+lang]
+document.getElementById("image").src=article.image
+
+}
+
+load()
+
+</script>
 
 </body>
 </html>
