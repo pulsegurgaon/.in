@@ -1,7 +1,7 @@
-let lang="en"
+let lang = "en"
 
 function toggleLang(){
-lang = lang==="en" ? "hi" : "en"
+lang = lang === "en" ? "hi" : "en"
 loadNews()
 }
 
@@ -9,13 +9,19 @@ async function loadNews(){
 
 const row = document.getElementById("newsrow")
 
-if(!row) return
+if(!row){
+console.log("newsrow container not found")
+return
+}
 
-row.innerHTML=""
+row.innerHTML="Loading news..."
+
+try{
 
 const res = await fetch("articles.json")
-
 const data = await res.json()
+
+row.innerHTML=""
 
 data.forEach(article=>{
 
@@ -35,6 +41,13 @@ card.innerHTML = `
 `row.appendChild(card)
 
 })
+
+}catch(err){
+
+row.innerHTML="Failed to load news."
+console.error(err)
+
+}
 
 }
 
